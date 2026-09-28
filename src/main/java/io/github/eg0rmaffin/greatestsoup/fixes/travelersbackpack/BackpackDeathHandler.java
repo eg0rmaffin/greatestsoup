@@ -1,7 +1,9 @@
-package io.github.eg0rmaffin.tbgravefix;
+package io.github.eg0rmaffin.greatestsoup.fixes.travelersbackpack;
 
 import com.tiviacz.travelersbackpack.capability.CapabilityUtils;
 import com.tiviacz.travelersbackpack.capability.ITravelersBackpack;
+import io.github.eg0rmaffin.greatestsoup.GreatestSoup;
+import io.github.eg0rmaffin.greatestsoup.GreatestSoupConfig;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -36,6 +38,9 @@ public class BackpackDeathHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void takeOffBackpack(LivingDeathEvent event) {
+        if (!GreatestSoupConfig.travelersBackpack.backpackInGrave) {
+            return;
+        }
         if (!(event.getEntityLiving() instanceof EntityPlayerMP) || event.getEntityLiving() instanceof FakePlayer) {
             return;
         }
@@ -92,7 +97,7 @@ public class BackpackDeathHandler {
         EntityPlayer original = event.getOriginal();
         ItemStack stack = pending.remove(original.getUniqueID());
         if (stack != null) {
-            TBGraveFix.LOGGER.warn("PlayerDropsEvent never came for {}, dropping their backpack in the world",
+            GreatestSoup.LOGGER.warn("PlayerDropsEvent never came for {}, dropping their backpack in the world",
                     original.getName());
             original.entityDropItem(stack, 1.0F);
         }

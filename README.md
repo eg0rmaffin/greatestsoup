@@ -1,35 +1,36 @@
-# TB Grave Fix
+# The Greatest Soup
 
-A small server-side Forge mod for Minecraft 1.12.2 that makes the backpack you are **wearing** from
-[Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack) end up in your grave from
-[Corail Tombstone](https://www.curseforge.com/minecraft/mc-mods/corail-tombstone) when you die.
+A Forge mod for Minecraft 1.12.2 that collects bug fixes and mod conflict fixes for **The Greatest Soup**, a private
+modpack. Every fix is enabled only when the mod it targets is installed, and each one can be switched off in
+`config/greatestsoup.cfg` or in game from the mod list.
 
-## The problem
+## Fixes
 
-A worn Traveler's Backpack is not kept in your inventory but in a separate capability slot. When you die,
-Traveler's Backpack handles it on `LivingDeathEvent`: it either places the backpack as a block nearby or drops it as
-an item. Both happen before the game collects your inventory into `PlayerDropsEvent`, which is where Tombstone
-gathers items for the grave. So the backpack never ends up in the grave. It lies somewhere around your death spot,
-possibly in lava or the void.
+### Traveler's Backpack: worn backpack goes into the grave
 
-## What this mod does
+A worn [Traveler's Backpack](https://www.curseforge.com/minecraft/mc-mods/travelers-backpack) is kept in a separate
+capability slot, not in the inventory. On death, Traveler's Backpack handles it on `LivingDeathEvent`: it places the
+backpack as a block nearby or drops it as an item. Both happen before the inventory is collected into
+`PlayerDropsEvent`, which is where [Corail Tombstone](https://www.curseforge.com/minecraft/mc-mods/corail-tombstone)
+gathers items for the grave. So the backpack never reached the grave and could end up in lava or the void.
 
-- Takes the backpack off just before Traveler's Backpack reacts to the death, so its own death handling is skipped.
-- Adds the backpack to the player's death drops, where Tombstone (or any other grave mod listening to
-  `PlayerDropsEvent`) collects it together with the rest of the inventory.
-- Without a grave mod, the backpack simply drops on the ground like any other item.
-- With `keepInventory` on, nothing changes: the backpack stays on your back, as before.
+The fix takes the backpack off just before Traveler's Backpack reacts to the death and adds it to the death drops:
+
+- With Tombstone (or any grave mod that listens to `PlayerDropsEvent`), the backpack goes into the grave.
+- Without a grave mod, it drops on the ground like any other item.
+- With `keepInventory` on, nothing changes: the backpack stays on your back.
 - If another mod cancels the death (a totem-like item, for example), the backpack is put back on.
 - The Creeper backpack still explodes on death, as it does in Traveler's Backpack.
 
-## Requirements
+Config: `travelersBackpack.backpackInGrave`. Tested with Traveler's Backpack 1.0.35 and Corail Tombstone 4.8.0.
 
-- Minecraft 1.12.2, Forge 14.23.5.2847 or newer
-- Traveler's Backpack (tested with 1.0.35). Without it, the mod does nothing.
-- Corail Tombstone is optional (tested with 4.8.0)
+## Installing and updating
 
-The mod is needed only on the server (in single player, that is the game itself). Clients can join a server that
-has it without installing it.
+Put `greatestsoup-<version>.jar` into `mods/`. To update, **delete the old jar** and put the new one in its place:
+two versions side by side crash the game on start. The mod adds no blocks, items or world data, so updating it or
+removing it cannot damage saves.
+
+Requires Minecraft 1.12.2 and Forge 14.23.5.2847 or newer.
 
 ## Building
 
@@ -37,10 +38,16 @@ Built with the [CleanroomMC ForgeDevEnv](https://github.com/CleanroomMC/ForgeDev
 (Gradle 9 + RetroFuturaGradle). Gradle itself must run on **Java 25**. Java 8 for compiling the mod is downloaded
 automatically.
 
-1. Put `TravelersBackpack-1.12.2-1.0.35.jar` and `tombstone-1.12.2-4.8.0.jar` into `libs/`.
+1. Put the jars of the patched mods into `libs/` (see `gradle/scripts/dependencies.gradle` for the exact files).
    They are compile-only dependencies and are not included in this repository.
 2. Run `./gradlew build`.
-3. Use `build/libs/tbgravefix-<version>.jar`, not the `-dev` one.
+3. Use `build/libs/greatestsoup-<version>.jar`, not the `-dev` one.
+
+## History
+
+The project started as **TB Grave Fix** (`tbgravefix`), a single fix for the Traveler's Backpack and Corail Tombstone
+conflict. Since more fixes for the modpack were on the way, it was renamed to The Greatest Soup to hold all of them in
+one mod instead of a separate jar for each bug. The old `tbgravefix` jar should be removed when switching to this one.
 
 ## License
 
