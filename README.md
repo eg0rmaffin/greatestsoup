@@ -45,6 +45,10 @@ automatically.
 
 ## History
 
+The Greatest Soup is my own private modpack. It isn't published on CurseForge or Modrinth, but I may share it
+privately one day. This mod started as fixes for problems I ran into while playing it. They aren't tied to the pack,
+though: each fix only targets the mods it names, so it can be useful in any 1.12.2 pack with those mods.
+
 The project started as **TB Grave Fix** (`tbgravefix`), a single fix for the Traveler's Backpack and Corail Tombstone
 conflict. Since more fixes for the modpack were on the way, it was renamed to The Greatest Soup to hold all of them in
 one mod instead of a separate jar for each bug. The old `tbgravefix` jar should be removed when switching to this one.
