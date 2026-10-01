@@ -24,8 +24,5 @@ build
 eclipse
 run
 
-# third-party mod jars (copied from the game instance)
-libs
-
 # macOS
 .DS_Store

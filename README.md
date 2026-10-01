@@ -1,8 +1,10 @@
+<img src="thegreatestsoup.png" alt="The Greatest Soup logo" width="160" align="right">
+
 # The Greatest Soup
 
 A Forge mod for Minecraft 1.12.2 that collects bug fixes and mod conflict fixes for **The Greatest Soup**, a private
 modpack. Every fix is enabled only when the mod it targets is installed, and each one can be switched off in
-`config/greatestsoup.cfg` or in game from the mod list.
+`config/greatestsoup.cfg` or in game from the mod list, unless its section says otherwise.
 
 ## Fixes
 
@@ -24,6 +26,20 @@ The fix takes the backpack off just before Traveler's Backpack reacts to the dea
 
 Config: `travelersBackpack.backpackInGrave`. Tested with Traveler's Backpack 1.0.35 and Corail Tombstone 4.8.0.
 
+### Corail Tombstone: no crash when a mob targets a ghost
+
+After death, Corail Tombstone gives the player the Ghostly Shape effect, and mobs are supposed to ignore such a
+player. To make a mob drop its target, Tombstone 4.8.0 writes to a protected Minecraft field directly. That only
+works with the access transformer that Tombstone ships in `META-INF/tombstone_at.cfg`, but its jar doesn't declare
+that file in the manifest, so Forge never applies it. As a result, the game crashes with `IllegalAccessError` as soon
+as any mob targets a player who just died, every time they go back for the grave.
+
+This mod declares the same access transformer lines in its own manifest, so Forge applies them and Tombstone works as
+intended with the original jar.
+
+This fix can't be switched off: access transformers are applied before any config is loaded. It only makes four
+Minecraft fields public and changes nothing on its own, so it is harmless without Tombstone too.
+
 ## Installing and updating
 
 Put `greatestsoup-<version>.jar` into `mods/`. To update, **delete the old jar** and put the new one in its place:
@@ -38,10 +54,15 @@ Built with the [CleanroomMC ForgeDevEnv](https://github.com/CleanroomMC/ForgeDev
 (Gradle 9 + RetroFuturaGradle). Gradle itself must run on **Java 25**. Java 8 for compiling the mod is downloaded
 automatically.
 
-1. Put the jars of the patched mods into `libs/` (see `gradle/scripts/dependencies.gradle` for the exact files).
-   They are compile-only dependencies and are not included in this repository.
-2. Run `./gradlew build`.
-3. Use `build/libs/greatestsoup-<version>.jar`, not the `-dev` one.
+1. Run `./gradlew build`. The patched mods are downloaded from CurseForge as compile-only dependencies.
+2. Use `build/libs/greatestsoup-<version>.jar`, not the `-dev` one.
+
+## Releasing
+
+Pushing a `vX.Y.Z` tag runs the [release workflow](.github/workflows/release.yml): it builds the mod, uploads it to
+[CurseForge](https://www.curseforge.com/projects/1716660) and creates a GitHub release, both with the matching
+section of `CHANGELOG.md`. The tag must match `mod_version` in `gradle.properties`. CurseForge needs the
+`CURSEFORGE_TOKEN` repository secret.
 
 ## History
 

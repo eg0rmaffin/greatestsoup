@@ -47,7 +47,7 @@ if (propertyBool('publish_to_curseforge')) {
         debugMode = propertyBool('curseforge_debug')
         dependsOn tasks.reobfJar
         def mainFile = upload(propertyString('curseforge_project_id'), tasks.reobfJar)
-        mainFile.displayName = "${propertyString('mod_name')} ${propertyString('mod_version')}"
+        mainFile.displayName = "${propertyString('mod_id')}-${propertyString('mod_version')}.jar"
         mainFile.releaseType = propertyString('release_type')
         mainFile.addJavaVersion 'Java 8'
         mainFile.addModLoader 'Forge'
@@ -69,6 +69,9 @@ if (propertyBool('publish_to_curseforge')) {
         if (propertyBool('use_asset_mover')) {
             mainFile.addRequirement 'assetmover'
         }
+        // Mods targeted by the fixes
+        mainFile.addOptional 'travelers-backpack'
+        mainFile.addOptional 'corail-tombstone'
     }
 }
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.1.0] - 2026-10-01
+
+### Fixed
+- Corail Tombstone 4.8.0: no more crash (`IllegalAccessError`) when a mob targets a player under the Ghostly Shape
+  effect. Tombstone's access transformer is now applied through this mod
+
+### Added
+- Mod logo, shown in the in-game mod list
+
 ## [1.0.0] - 2026-09-28
 
 ### Added

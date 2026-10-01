@@ -39,11 +39,11 @@ dependencies {
     // Include OSXNarratorBlocker by default for the dev env, for M1+ Macs
     runtimeOnly 'com.cleanroommc:osxnarratorblocker:1.0'
 
-    // Mods patched by the fixes, as local jars in libs/. They ship SRG-named, so they are deobfuscated to MCP names
+    // Mods patched by the fixes, from CurseForge (curse.maven:<slug>-<project id>:<file id>). They ship SRG-named, so they are deobfuscated to MCP names
     // for compilation. None is bundled: they are expected to be present in the game's mods folder.
-    compileOnly rfg.deobf(files('libs/TravelersBackpack-1.12.2-1.0.35.jar'))
+    compileOnly rfg.deobf('curse.maven:travelers-backpack-321117:3150850') // 1.0.35
     // Not referenced from code (the backpack fix only feeds PlayerDropsEvent, which Tombstone consumes), kept for IDE browsing
-    compileOnly rfg.deobf(files('libs/tombstone-1.12.2-4.8.0.jar'))
+    compileOnly rfg.deobf('curse.maven:corail-tombstone-243707:8643174') // 4.8.0
 
     // Example - Dependency descriptor:
     // 'com.google.code.gson:gson:2.8.6' << group: com.google.code.gson, name:gson, version:2.8.6
