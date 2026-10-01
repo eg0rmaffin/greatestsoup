@@ -1,4 +1,4 @@
-<img src="thegreatestsoup.png" alt="The Greatest Soup logo" width="160" align="right">
+<p align="center"><img src="thegreatestsoup.png" alt="The Greatest Soup logo" width="200"></p>
 
 # The Greatest Soup
 
