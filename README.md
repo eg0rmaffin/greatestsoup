@@ -40,6 +40,20 @@ intended with the original jar.
 This fix can't be switched off: access transformers are applied before any config is loaded. It only makes four
 Minecraft fields public and changes nothing on its own, so it is harmless without Tombstone too.
 
+### Minecraft: white inventory screen with arrows stuck in the player
+
+For every arrow stuck in an entity, Minecraft picks a random part of its model and a random box of that part to
+attach the arrow to. Some mods add parts without boxes to the player model, and when such a part is picked, the arrow
+layer throws `IllegalArgumentException: bound must be positive`. The exception escapes in the middle of rendering,
+so every frame leaves an extra matrix on the OpenGL stack until it overflows (`GL ERROR 1283: Stack overflow` in the
+log), and the player preview in the inventory turns the whole screen white. It looks tied to places, like a floor of a
+dungeon, because that's where skeletons shoot you; it goes away once the arrows wear off.
+
+The fix renders stuck arrows the same way, but only on parts that have boxes. The first time a model with empty parts
+shows arrows, the log names it, which points to the mod that added those parts.
+
+Config: `minecraft.safeArrowLayer`. Client side only.
+
 ## Installing and updating
 
 Put `greatestsoup-<version>.jar` into `mods/`. To update, **delete the old jar** and put the new one in its place:

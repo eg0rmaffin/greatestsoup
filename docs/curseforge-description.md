@@ -33,6 +33,14 @@ Big modpacks are a soup of hundreds of mods, and some of them don't get along: i
 
 *This fix can't be switched off (access transformers load before any config), but it's harmless: it only makes four Minecraft fields public.*
 
+### Minecraft: white inventory screen with arrows stuck in the player
+
+**The problem:** some mods add empty parts to the player model. When arrows are stuck in you, Minecraft can pick such a part to attach an arrow to and throws an error every frame, which overflows the OpenGL stack and turns the inventory screen white until the arrows wear off.
+
+**The fix:** stuck arrows are rendered only on model parts that have something to attach to.
+
+*Config option: `minecraft.safeArrowLayer`. Client side only.*
+
 ## More fixes coming
 
 The list will grow as I find more problems. Hit a bug or conflict between mods that isn't handled anywhere else? Open an issue on [GitHub](https://github.com/eg0rmaffin/greatestsoup/issues).

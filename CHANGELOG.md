@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0] - 2026-10-02
+
+### Fixed
+- Minecraft: the inventory screen no longer turns white while arrows are stuck in the player. Arrows stuck in entities skip model parts that have no boxes instead of throwing "bound must be positive" every frame
+
 ## [1.1.0] - 2026-10-01
 
 ### Fixed

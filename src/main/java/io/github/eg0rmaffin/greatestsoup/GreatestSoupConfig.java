@@ -14,8 +14,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber(modid = Tags.MOD_ID)
 public class GreatestSoupConfig {
 
+    @Config.Comment("Minecraft fixes, for bugs that other mods trigger in vanilla code")
+    public static final Vanilla minecraft = new Vanilla();
+
     @Config.Comment("Traveler's Backpack fixes")
     public static final TravelersBackpack travelersBackpack = new TravelersBackpack();
+
+    public static class Vanilla {
+
+        @Config.Comment({"Render arrows stuck in entities without crashing on model parts that have no boxes.",
+                "Without it, a mod that adds such a part to the player model turns the inventory screen white",
+                "while arrows are stuck in the player. Client side"})
+        public boolean safeArrowLayer = true;
+
+    }
 
     public static class TravelersBackpack {
 
