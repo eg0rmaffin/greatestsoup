@@ -72,4 +72,10 @@ though: each fix only targets the mods it names, so it can be useful in any 1.12
 
 ## License
 
-[MIT](LICENSE)
+The mod is licensed under the [Mozilla Public License 2.0](LICENSE). You're free to use it in any modpack, and to
+build on it: if you distribute modified versions of its files, they must stay under MPL-2.0. Versions up to 1.0.0
+were released under the MIT license.
+
+The build scripts (`build.gradle`, `settings.gradle`, `gradle.properties`, `gradle/scripts/`) come from the
+[CleanroomMC ForgeDevEnv](https://github.com/CleanroomMC/ForgeDevEnv) template and stay under its
+[MIT license](LICENSE-ForgeDevEnv).

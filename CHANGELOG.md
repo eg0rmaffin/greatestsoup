@@ -9,6 +9,9 @@
 ### Added
 - Mod logo, shown in the in-game mod list
 
+### Changed
+- License changed from MIT to MPL-2.0
+
 ## [1.0.0] - 2026-09-28
 
 ### Added
