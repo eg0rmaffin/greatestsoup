@@ -55,6 +55,23 @@ shows arrows, the log names it, which points to the mod that added those parts.
 
 Config: `minecraft.safeArrowLayer`. Client side only.
 
+### HBM's Nuclear Tech: the shredder ignores ores of other mods
+
+HBM builds most shredder recipes from the ore dictionary: `oreX` becomes two `dustX`, `ingotX` one, and so on, so
+any mod's ore works as long as some mod adds the matching dust. Two bugs break that:
+
+- for each ore dictionary name, only the first item gets a recipe, so when several mods add tin or copper ore, only
+  one of them shreds into dust and the rest give scrap;
+- items registered with the wildcard meta are stored under meta 32767, and the shredder looks recipes up by exact
+  meta, so they never match.
+
+The fix repeats HBM's rules after HBM's own setup, for every item of every name, with wildcard items expanded into
+their variants. It only adds recipes where there were none, so HBM's own recipes and overrides stay as they are, and
+it doesn't invent new dusts. Ores that still shred into scrap because the pack has no dust for their material are
+listed in the log, which tells what a mod like JAOPCA would need to add.
+
+Config: `hbm.shredderAllOreDictItems`, applied on restart. Tested with HBM's Nuclear Tech Extended 3.0.3.
+
 ## Installing and updating
 
 Put `greatestsoup-<version>.jar` into `mods/`. To update, **delete the old jar** and put the new one in its place:

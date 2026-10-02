@@ -1,11 +1,13 @@
 package io.github.eg0rmaffin.greatestsoup;
 
+import io.github.eg0rmaffin.greatestsoup.fixes.hbm.ShredderOreDictFix;
 import io.github.eg0rmaffin.greatestsoup.fixes.minecraft.ArrowLayerInstaller;
 import io.github.eg0rmaffin.greatestsoup.fixes.travelersbackpack.BackpackDeathHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  * and can be switched off in {@link GreatestSoupConfig}.
  */
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION,
-        dependencies = "before:travelersbackpack",
+        dependencies = "before:travelersbackpack;after:hbm",
         acceptableRemoteVersions = "*")
 public class GreatestSoup {
 
@@ -28,6 +30,14 @@ public class GreatestSoup {
         // Fix classes link against the mods they patch, so they must not be loaded without them
         if (Loader.isModLoaded("travelersbackpack")) {
             MinecraftForge.EVENT_BUS.register(new BackpackDeathHandler());
+        }
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        // After HBM's postInit, which builds the shredder recipes this fix completes
+        if (Loader.isModLoaded("hbm") && GreatestSoupConfig.hbm.shredderAllOreDictItems) {
+            ShredderOreDictFix.apply();
         }
     }
 

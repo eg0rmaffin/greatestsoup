@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3.0] - 2026-10-02
+
+### Fixed
+- HBM's Nuclear Tech: the shredder no longer turns ores and materials of other mods into scrap when the pack has a dust for them. HBM only gave a recipe to the first item of each ore dictionary name and never matched items registered with the wildcard meta; now every item gets one under HBM's own rules (71 more recipes in The Greatest Soup, among them copper, uranium, iron, titanium, tungsten and Draconium ores). Ores that still give scrap because no mod adds a dust for them are listed in the log
+
 ## [1.2.0] - 2026-10-02
 
 ### Fixed

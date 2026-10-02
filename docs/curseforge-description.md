@@ -41,6 +41,14 @@ Big modpacks are a soup of hundreds of mods, and some of them don't get along: i
 
 *Config option: `minecraft.safeArrowLayer`. Client side only.*
 
+### HBM's Nuclear Tech: the shredder ignores ores of other mods
+
+**The problem:** HBM's shredder builds its recipes from the ore dictionary (ore into two dusts, and so on), but only for the first item of each name and never for items registered with the wildcard meta. When several mods add copper or tin ore, all but one of them shred into scrap.
+
+**The fix:** every item gets the recipe HBM's own rules give it, as long as the pack has the matching dust. HBM's own recipes stay as they are, and no new dusts are invented. Ores that still give scrap are listed in the log, so you know which dusts are missing (JAOPCA can add them).
+
+*Config option: `hbm.shredderAllOreDictItems`, applied on restart.*
+
 ## More fixes coming
 
 The list will grow as I find more problems. Hit a bug or conflict between mods that isn't handled anywhere else? Open an issue on [GitHub](https://github.com/eg0rmaffin/greatestsoup/issues).
