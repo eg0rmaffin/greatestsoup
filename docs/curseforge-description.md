@@ -35,7 +35,7 @@ Big modpacks are a soup of hundreds of mods, and some of them don't get along: i
 
 ### Minecraft: white inventory screen with arrows stuck in the player
 
-**The problem:** some mods add empty parts to the player model. When arrows are stuck in you, Minecraft can pick such a part to attach an arrow to and throws an error every frame, which overflows the OpenGL stack and turns the inventory screen white until the arrows wear off.
+**The problem:** some mods add empty parts to the player model (HBM's Nuclear Tech Extended does, for its Egon backpack). When arrows are stuck in you, Minecraft can pick such a part to attach an arrow to and throws an error every frame, which overflows the OpenGL stack and turns the inventory screen white until the arrows wear off.
 
 **The fix:** stuck arrows are rendered only on model parts that have something to attach to.
 

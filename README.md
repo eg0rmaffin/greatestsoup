@@ -44,7 +44,8 @@ Minecraft fields public and changes nothing on its own, so it is harmless withou
 
 For every arrow stuck in an entity, Minecraft picks a random part of its model and a random box of that part to
 attach the arrow to. Some mods add parts without boxes to the player model, and when such a part is picked, the arrow
-layer throws `IllegalArgumentException: bound must be positive`. The exception escapes in the middle of rendering,
+layer throws `IllegalArgumentException: bound must be positive`. HBM's Nuclear Tech Extended does this: it attaches the
+Egon backpack to the player's body as a model part that draws an OBJ model and has no boxes. The exception escapes in the middle of rendering,
 so every frame leaves an extra matrix on the OpenGL stack until it overflows (`GL ERROR 1283: Stack overflow` in the
 log), and the player preview in the inventory turns the whole screen white. It looks tied to places, like a floor of a
 dungeon, because that's where skeletons shoot you; it goes away once the arrows wear off.
