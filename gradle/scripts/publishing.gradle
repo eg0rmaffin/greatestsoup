@@ -72,6 +72,7 @@ if (propertyBool('publish_to_curseforge')) {
         // Mods targeted by the fixes
         mainFile.addOptional 'travelers-backpack'
         mainFile.addOptional 'corail-tombstone'
+        mainFile.addOptional 'hbms-nuclear-tech-mod-extended-edition' // its Egon backpack triggers the arrow layer fix
     }
 }
 
