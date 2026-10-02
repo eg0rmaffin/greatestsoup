@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Swaps LayerArrow for {@link SafeLayerArrow} on every living entity renderer, players included.
+ * Swaps LayerArrow for {@link SafeLayerArrow} on every living entity renderer that has it. In vanilla that's only the
+ * player renderers; some mods give it to their own humanoid mobs.
  */
 @SideOnly(Side.CLIENT)
 public final class ArrowLayerInstaller {
@@ -44,7 +45,7 @@ public final class ArrowLayerInstaller {
             for (int i = 0; i < layers.size(); i++) {
                 // Exact class only: a mod's own subclass may render arrows its own way
                 if (layers.get(i).getClass() == LayerArrow.class) {
-                    layers.set(i, new SafeLayerArrow(living, (LayerArrow) layers.get(i)));
+                    layers.set(i, new SafeLayerArrow(living));
                     replaced++;
                 }
             }
