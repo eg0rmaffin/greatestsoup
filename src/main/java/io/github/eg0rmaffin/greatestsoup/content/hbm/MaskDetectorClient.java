@@ -2,14 +2,12 @@ package io.github.eg0rmaffin.greatestsoup.content.hbm;
 
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
-import com.hbm.entity.mob.EntityMaskMan;
 import io.github.eg0rmaffin.greatestsoup.GreatestSoupConfig;
 import io.github.eg0rmaffin.greatestsoup.Tags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +32,6 @@ import java.util.Random;
  *     through the last minute. The roll itself gives a sonar ping.</li>
  *     <li>While the player would be picked (irradiated enough and underground) the lens glows red, and every click
  *     comes twice, like a heartbeat.</li>
- *     <li>A low hum while a Mask Man is within 64 blocks.</li>
  *     <li>Outside surface worlds, where the roll never happens, it only gives off static now and then.</li>
  * </ul>
  */
@@ -50,7 +47,6 @@ public final class MaskDetectorClient {
 
     private final Random random = new Random();
     private int nextSound;
-    private int nextHum;
     private long lastRoll = -1;
 
     public static void registerModel(Item item) {
@@ -75,9 +71,6 @@ public final class MaskDetectorClient {
         }
         if (nextSound > 0) {
             nextSound--;
-        }
-        if (nextHum > 0) {
-            nextHum--;
         }
         if (!MaskManRules.enabled) {
             return;
@@ -108,13 +101,6 @@ public final class MaskDetectorClient {
             } else {
                 click(until <= NEAR ? 0.6F : 0.3F);
                 nextSound = until <= NEAR ? 60 + random.nextInt(100) : 600 + random.nextInt(600);
-            }
-        }
-
-        if (nextHum == 0) {
-            nextHum = 60;
-            if (!world.getEntitiesWithinAABB(EntityMaskMan.class, player.getEntityBoundingBox().grow(64.0)).isEmpty()) {
-                play(SoundEvents.BLOCK_PORTAL_AMBIENT, 0.35F, 0.5F);
             }
         }
     }

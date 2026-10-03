@@ -58,7 +58,6 @@ A homemade gadget soldered together from a gas mask and a cheap clock. Nobody re
 
 - It **clicks when something is coming**, more and more often, and it doesn't stay quiet when the moment arrives.
 - It **seems to care about the deep and the irradiated**: watch its lens.
-- It doesn't like being near *him*.
 
 Crafted from an HBM gas mask, a clock, redstone and iron plates. Works in the hotbar, the offhand or a Baubles trinket slot.
 

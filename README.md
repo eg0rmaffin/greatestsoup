@@ -86,7 +86,6 @@ The detector reveals the schedule without spelling out the rules:
 - from 30 minutes before a roll it clicks now and then, from 10 minutes often, and it beeps every second through the
   last minute; the roll itself gives a sonar ping;
 - its lens turns red while the player would be picked by a roll, and then every click comes twice;
-- it hums while a Mask Man is within 64 blocks;
 - outside surface worlds, where no roll ever happens, it only gives off static.
 
 The rules are read from HBM's own config (`MobConfig`), and a server sends its values to joining players, so the
