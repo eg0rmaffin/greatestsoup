@@ -31,6 +31,13 @@ public class GreatestSoupConfig {
         @Config.RequiresMcRestart
         public boolean shredderAllOreDictItems = true;
 
+        @Config.Comment("Let the \"M\" Detector click, beep and hum. The red lens works either way. Client side")
+        public boolean maskDetectorSounds = true;
+
+        @Config.Comment("Volume of the \"M\" Detector's sounds. Client side")
+        @Config.RangeDouble(min = 0.0, max = 1.0)
+        public double maskDetectorVolume = 0.7;
+
     }
 
     public static class Vanilla {

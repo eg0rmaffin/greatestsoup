@@ -1,6 +1,6 @@
 # The Greatest Soup
 
-**Small, focused fixes for bugs and conflicts between 1.12.2 mods.**
+**Small, focused fixes for bugs and conflicts between 1.12.2 mods, and a few additions that fit them.**
 
 Big modpacks are a soup of hundreds of mods, and some of them don't get along: items get lost, events fire in the wrong order, things break in ways no single mod author ever sees. This mod collects fixes for such problems, one at a time, as I run into them in my own pack.
 
@@ -8,7 +8,8 @@ Big modpacks are a soup of hundreds of mods, and some of them don't get along: i
 
 - **Only what you need.** Every fix turns on only when the mod it targets is installed. If you don't have that mod, the fix does nothing.
 - **Everything can be switched off.** Each fix has its own option in `config/greatestsoup.cfg`, also editable in game from the Mods list (unless its section says otherwise).
-- **Safe to add or remove.** The mod adds no blocks, items or world data, so it can't damage your world.
+- **Light on your world.** The fixes add no blocks, items or world data. The only item is the "M" Detector below; removing the mod removes it from your world, nothing else.
+- **Install it on both sides.** Because of that item, servers and clients both need the mod.
 
 ## Fixes
 
@@ -48,6 +49,20 @@ Big modpacks are a soup of hundreds of mods, and some of them don't get along: i
 **The fix:** every item gets the recipe HBM's own rules give it, as long as the pack has the matching dust. HBM's own recipes stay as they are, and no new dusts are invented. Ores that still give scrap are listed in the log, so you know which dusts are missing (JAOPCA can add them).
 
 *Config option: `hbm.shredderAllOreDictItems`, applied on restart.*
+
+## Additions
+
+### HBM's Nuclear Tech: the "M" Detector
+
+A homemade gadget soldered together from a gas mask and a cheap clock. Nobody remembers how it knows the schedule.
+
+- It **clicks when something is coming**, more and more often, and it doesn't stay quiet when the moment arrives.
+- It **seems to care about the deep and the irradiated**: watch its lens.
+- It doesn't like being near *him*.
+
+Crafted from an HBM gas mask, a clock, redstone and iron plates. Works in the hotbar, the offhand or a Baubles trinket slot.
+
+*Config options: `hbm.maskDetectorSounds`, `hbm.maskDetectorVolume`.*
 
 ## More fixes coming
 

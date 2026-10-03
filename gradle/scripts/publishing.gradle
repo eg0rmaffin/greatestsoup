@@ -73,6 +73,7 @@ if (propertyBool('publish_to_curseforge')) {
         mainFile.addOptional 'travelers-backpack'
         mainFile.addOptional 'corail-tombstone'
         mainFile.addOptional 'hbms-nuclear-tech-mod-extended-edition' // its Egon backpack triggers the arrow layer fix
+        mainFile.addOptional 'baubles' // the "M" Detector is a trinket
     }
 }
 

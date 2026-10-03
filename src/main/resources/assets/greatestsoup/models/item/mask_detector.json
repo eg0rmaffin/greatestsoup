@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "greatestsoup:items/mask_detector"
+  },
+  "overrides": [
+    { "predicate": { "greatestsoup:candidate": 1 }, "model": "greatestsoup:item/mask_detector_alert" }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "conditions": [
+    { "type": "forge:mod_loaded", "modid": "hbm" }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "PRP",
+    "PCP"
+  ],
+  "key": {
+    "M": { "item": "hbm:gas_mask" },
+    "R": { "item": "minecraft:redstone" },
+    "C": { "item": "minecraft:clock" },
+    "P": { "type": "forge:ore_dict", "ore": "plateIron" }
+  },
+  "result": { "item": "greatestsoup:mask_detector" }
+}

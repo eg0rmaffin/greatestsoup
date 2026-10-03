@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0] - 2026-10-03
+
+### Added
+- HBM's Nuclear Tech: the "M" Detector, a trinket that warns about Mask Man spawn rolls without spelling out the rules: it clicks more and more often as a roll gets close, pings on the roll, its lens turns red while you could be picked, and it hums while a Mask Man is nearby. Crafted from a gas mask, a clock, redstone and iron plates. Works from the hotbar, the offhand or a Baubles trinket slot
+
+### Changed
+- The mod now adds an item, so it is needed on the client as well as on the server
+
 ## [1.3.0] - 2026-10-02
 
 ### Fixed

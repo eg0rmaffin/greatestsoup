@@ -2,8 +2,8 @@
 
 # The Greatest Soup
 
-A Forge mod for Minecraft 1.12.2 that collects bug fixes and mod conflict fixes for **The Greatest Soup**, a private
-modpack. Every fix is enabled only when the mod it targets is installed, and each one can be switched off in
+A Forge mod for Minecraft 1.12.2 that collects bug fixes, mod conflict fixes and a few small additions for **The
+Greatest Soup**, a private modpack. Every fix is enabled only when the mod it targets is installed, and each one can be switched off in
 `config/greatestsoup.cfg` or in game from the mod list, unless its section says otherwise.
 
 ## Fixes
@@ -72,11 +72,34 @@ listed in the log, which tells what a mod like JAOPCA would need to add.
 
 Config: `hbm.shredderAllOreDictItems`, applied on restart. Tested with HBM's Nuclear Tech Extended 3.0.3.
 
+## Additions
+
+### HBM's Nuclear Tech: the "M" Detector
+
+HBM's Mask Man doesn't spawn at random moments. Once every `maskmanDelay` ticks of total world time (216000 by
+default, 3 hours of play), on that exact tick, a random player in the Overworld gets a 1 in `maskmanChance` roll,
+but only if their radiation dose is at least `maskmanMinRad` (50) and they are underground (more than 3 blocks of
+terrain above them). None of this is visible in game, so it is easy to catch him twice by chance or never at all.
+
+The detector reveals the schedule without spelling out the rules:
+
+- from 30 minutes before a roll it clicks now and then, from 10 minutes often, and it beeps every second through the
+  last minute; the roll itself gives a sonar ping;
+- its lens turns red while the player would be picked by a roll, and then every click comes twice;
+- it hums while a Mask Man is within 64 blocks;
+- outside surface worlds, where no roll ever happens, it only gives off static.
+
+The rules are read from HBM's own config (`MobConfig`), and a server sends its values to joining players, so the
+detector always counts what the server actually rolls. It works from the hotbar, the offhand or, with Baubles, a
+trinket slot. Crafted from an HBM gas mask, a clock, redstone and four iron plates.
+
+Config: `hbm.maskDetectorSounds`, `hbm.maskDetectorVolume`. Tested with HBM's Nuclear Tech Extended 3.0.3.
+
 ## Installing and updating
 
-Put `greatestsoup-<version>.jar` into `mods/`. To update, **delete the old jar** and put the new one in its place:
-two versions side by side crash the game on start. The mod adds no blocks, items or world data, so updating it or
-removing it cannot damage saves.
+Put `greatestsoup-<version>.jar` into `mods/` on both the server and the client: the mod adds an item, so both sides
+need it. To update, **delete the old jar** and put the new one in its place: two versions side by side crash the game
+on start. The fixes add nothing to the world; removing the mod only removes the detectors from it.
 
 Requires Minecraft 1.12.2 and Forge 14.23.5.2847 or newer.
 
