@@ -92,6 +92,11 @@ The rules are read from HBM's own config (`MobConfig`), and a server sends its v
 detector always counts what the server actually rolls. It works from the hotbar, the offhand or, with Baubles, a
 trinket slot. Crafted from an HBM gas mask, a clock, redstone and four iron plates.
 
+<p align="center">
+  <img src="docs/media/recipe.png" alt="The detector's recipe" width="420">
+  <img src="docs/media/states.png" alt="The detector quiet and with a red lens" width="420">
+</p>
+
 Config: `hbm.maskDetectorSounds`, `hbm.maskDetectorVolume`. Tested with HBM's Nuclear Tech Extended 3.0.3.
 
 ## Installing and updating
